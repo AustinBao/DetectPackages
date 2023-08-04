@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['Box']
+
+roboflow:
+  workspace: austin-bao-furyk
+  project: packagedetection-nogha
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/austin-bao-furyk/packagedetection-nogha/dataset/1
