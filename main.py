@@ -10,9 +10,8 @@ minute = curr.tm_min
 model = YOLO("C:/OpenCV/DetectAmazonPackage/runs/detect/train4/weights/best.pt") 
 
 
-
 def takePicture(frame):
-    newImageFilePath = "C:/OpenCV/DetectAmazonPackage/Images/mainImageFolder/hour" + str(hour) + "minute" + str(minute) + ".jpg"
+    newImageFilePath = "C:OpenCV/DetectAmazonPackage/Images/mainImageFolder/hour" + str(hour) + "minute" + str(minute) + ".jpg"
     cv2.imwrite(newImageFilePath, frame)
     return newImageFilePath
 
@@ -53,7 +52,12 @@ imgfilepath = takePicture(frame)
 
 result = model.predict(imgfilepath,save =True, save_txt= True)
 
-# Need an if statement
+# if statement if there is no prediction/no box detected
+if os.path.isfile("C:/OpenCV/DetectAmazonPackage/runs/detect/predict" + "/labels/hour" + str(hour) + "minute" + str(minute) + ".txt") is False:
+    # cv2.putText(imgfilepath,text="NO BOX DETECTED",org=(10,600),fontFace=cv2.FONT_HERSHEY_COMPLEX,fontScale=10,color=(255,0,0),thickness=-1)
+    print("NO BOX DETECTED/ NO PREDICTION")
+    exit()
+
 predictionsTXTFilePath = "C:/OpenCV/DetectAmazonPackage/runs/detect/predict" + "/labels/hour" + str(hour) + "minute" + str(minute) + ".txt"
 x_center, y_center, r_width, r_height = rectangleDimensions(predictionsTXTFilePath)
 
@@ -76,8 +80,8 @@ while True:
         break
 
 cap.release()
-cv2.destroyAllWindows()
-    
+cv2.destroyAllWindows
+
 
 
 
